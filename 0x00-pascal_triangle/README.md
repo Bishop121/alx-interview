@@ -1,1 +1,1 @@
- love javascript
+the pascal triangle function
