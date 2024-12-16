@@ -1,30 +1,23 @@
 #!/usr/bin/python3
-"""Change comes from within"""
+"""
+Main file for testing
+"""
 
 
-def makeChange(coins, total):
-    """Function to determine the fewest number of coins needed
-        to meet a given amount from a given pile of coins
-    Arg:
-        coins (list): list of the values of the coins in your possession
-        total (int): total number to get a change for
-
-    Return:
-        fewest number of coins needed to meet total or 0 if None
+def makeChange(coins, amount):
     """
-    if total <= 0:
+    How many of this type of coin can I get with my money? Okay,
+        I'll take that many. Now, how much money do I have left?
+        And how many coins do I have in my pocket?
+    """
+    if amount < 1:
         return 0
-
+    coins.sort(reverse=True)
     count = 0
-    coins.sort()
-
-    try:
-        while total > 0:
-            coin = coins.pop()
-            if coin <= total:
-                num_coin = total // coin
-                count += num_coin
-                total -= (num_coin * coin)
-    except Exception:
-        return -1
-    return count
+    for coin in coins:
+        if amount == 0:
+            break
+        num = amount // coin
+        amount -= num * coin
+        count += num
+    return count if amount == 0 else -1
